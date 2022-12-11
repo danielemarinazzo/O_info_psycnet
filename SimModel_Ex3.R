@@ -278,7 +278,7 @@ fit <- lavaan(pop.model)
 Sigma <- lavInspect(fit, "Sigma")
 
 #visualize lavaan SEM
-semPaths(fit)
+#semPaths(fit)
 
 
 #=-=-BASELINE EDGELIST-=-=-=-=-=-=#
@@ -593,12 +593,25 @@ list_results <- list('Iteration Summary (Avg. KPIs)' = df_kpi_avg, 'Iteration KP
 print(list_results$`Iteration Summary (Avg. KPIs)`)
 print(list_results$`II per Triplet`)
 
+gr <- list(c(1:3),c(4:6),c(7:9),c(10:12),c(13:15),c(16:18),c(19:21),
+           c(22:24),c(25:27),c(28:30),c(31:33),c(34:36))                         
+mycolor<-c('#a6cee3', '#1e78b4', '#b1df8a', '#32a02d','#fb9b98', 
+           '#e3191c', '#fcbf70', '#ff8000', '#cab1d6',
+           '#6a3c9a','#ffff98','#b15827')
+data_sim.cor<-cor_auto(Data)
+pdf("ex3_zero.pdf")
+graph_r1.g<-qgraph(data_sim.cor, graph="glasso", layout=L3,vsize=7,
+                   cut=0, maximum=.45, sampleSize = nrow(Data),
+                   negCol = "#fc1201", posCol = "#0095fd",
+                   border.width=1.5, border.color="black", minimum=.03,
+                   groups=gr, color=mycolor)
+dev.off()
 
-library(qgraph)
-library(bootnet)
-net <- estimateNetwork(Data, default = "EBICglasso")
-plot(net, layout = "spring",
-     palette = "pastel", 
-     legend.cex = 0.38, 
-     vsize = 6,
-     label.cex = 1.25)
+#library(qgraph)
+#library(bootnet)
+#net <- estimateNetwork(Data, default = "EBICglasso")
+#plot(net, layout = "spring",
+#     palette = "pastel", 
+#     legend.cex = 0.38, 
+#     vsize = 6,
+#     label.cex = 1.25)

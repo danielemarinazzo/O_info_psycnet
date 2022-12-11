@@ -11,7 +11,7 @@ set.seed(100)
 
 #parameters for simulation
 REP <- 10L #repetitions
-N <- 2000L #sample size
+N <- 200L #sample size
 
 #=-=-CASE SELECTION=-=-=-#
 #e.covs are now arranged in a vector of size 10
@@ -537,11 +537,25 @@ list_results <- list('Iteration Summary (Avg. KPIs)' = df_kpi_avg, 'Iteration KP
 
 print(list_results$`Iteration Summary (Avg. KPIs)`)
 print(list_results$`II per Triplet`)
-library(qgraph)
-library(bootnet)
-net <- estimateNetwork(Data, default = "EBICglasso")
-plot(net, layout = "spring",
-     palette = "pastel", 
-     legend.cex = 0.38, 
-     vsize = 6,
-     label.cex = 1.25)
+
+gr <- list(c(1:3),c(4:6),c(7:9),c(10:12),c(13:15),c(16:18),c(19:21),
+           c(22:24),c(25:27))                         
+mycolor<-c('#a6cee3', '#1e78b4', '#b1df8a', '#32a02d','#fb9b98', 
+           '#e3191c', '#fcbf70', '#ff8000', '#cab1d6')
+data_sim.cor<-cor_auto(Data)
+pdf("ex2_syn_200.pdf")
+graph_r1.g<-qgraph(data_sim.cor, graph="glasso", layout=L,vsize=7,
+                   cut=0, maximum=.45, sampleSize = nrow(Data),
+                   negCol = "#fc1201", posCol = "#0095fd",
+                   border.width=1.5, border.color="black", minimum=.03,
+                   groups=gr, color=mycolor)
+dev.off()
+
+#library(qgraph)
+#library(bootnet)
+#net <- estimateNetwork(Data, default = "EBICglasso")
+#plot(net, layout = "spring",
+#     palette = "pastel", 
+#     legend.cex = 0.38, 
+#     vsize = 6,
+#     label.cex = 1.25)
