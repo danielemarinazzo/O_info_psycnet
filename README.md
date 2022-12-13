@@ -5,10 +5,15 @@ How to:
 ---------------------------
 1. Input: 2D data (observations x variables). Real data ([here](https://eiko-fried.com/data/)) you find plenty, or simulations (see below)
 2. Clone [this repo](https://github.com/danielemarinazzo/HOI) and run [this function](https://github.com/danielemarinazzo/HOI/blob/main/hoi_exhaustive_loop_zerolag_fdr.m). , with the command
+
 `[Otot, O_val_size_tot] = hoi_exhaustive_loop_zerolag(data, max_size, n_highest, biascorrection);`, where
+
 `max_size = highest multiplet order (e.g. 4)`
+
 `n_highest = number of multiplets with highest informational value that is retained for boostrap validation (e.g. 50)`
+
 `biascorrection = whether the entropy is corrected for sampling bias (1 = true)`
+
 For hardcore python users, [this repo](https://github.com/PranavMahajan25/HOI_toolbox) is a functioning, work in progress version, but slower and still without the important check of [carryover significance](https://github.com/danielemarinazzo/HOI/blob/main/find_carryover_significance.m)
 3. Plot the output using [this repo](https://github.com/renzocom/hyperplot) and the notebook `High order network psychometrics.ipynb`
 
