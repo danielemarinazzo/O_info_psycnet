@@ -1,12 +1,13 @@
 # Table A1, A2 and A3
 
 library(lavaan)
+library(qgraph)
 #set factor loadings and covariance within triplet
 l1 <- sqrt(0.99)
 l2 <- sqrt(0.70)
 l3 <- sqrt(0.30)
 S.ecov <- -0.39 # synergy
-#Z.ecov <- -0.14849 # zero interaction
+#Z.ecov <- -0.14849 # ~zero interaction information
 #R.ecov <- 0.22 # redundancy
 t1 <- 1 - l1^2 #variance
 t2 <- 1 - l2^2
@@ -34,8 +35,8 @@ S ~~ 0*S.bf
 fit <- lavaan(pop.model)
 COV <- lavInspect(fit, "implied")$cov
 #COV
-pdf("app_syn.pdf")
+#pdf("app_syn.pdf")
 graph_r1.g<-qgraph(COV, layout="circular", graph="glasso", 
                    sampleSize=2000, cut=0, theme="colorblind")
-dev.off()
+#dev.off()
 

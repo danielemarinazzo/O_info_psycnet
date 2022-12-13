@@ -210,7 +210,8 @@ pop.model <- c("
 
 ")
 
-fit <- lavaan(pop.model)
+Data <- simulateData(pop.model, sample.nobs = 2000L, empirical = TRUE)
+fit <- sem(pop.model, data = Data)
 Sigma <- lavInspect(fit, "Sigma")
 
 #visualize lavaan SEM

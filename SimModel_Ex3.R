@@ -274,11 +274,12 @@ pop.model <- c("
     K.z ~~ 0.10*L.z
 ")
 
-fit <- lavaan(pop.model)
+Data <- simulateData(pop.model, sample.nobs = 2000L, empirical = TRUE)
+fit <- sem(pop.model, data = Data)
 Sigma <- lavInspect(fit, "Sigma")
 
 #visualize lavaan SEM
-#semPaths(fit)
+semPaths(fit)
 
 
 #=-=-BASELINE EDGELIST-=-=-=-=-=-=#
@@ -599,13 +600,14 @@ mycolor<-c('#a6cee3', '#1e78b4', '#b1df8a', '#32a02d','#fb9b98',
            '#e3191c', '#fcbf70', '#ff8000', '#cab1d6',
            '#6a3c9a','#ffff98','#b15827')
 data_sim.cor<-cor_auto(Data)
-pdf("ex3_zero.pdf")
-graph_r1.g<-qgraph(data_sim.cor, graph="glasso", layout=L3,vsize=7,
+#pdf("ex3_zero.pdf")
+# use layout=L if you computed an averaged layout
+graph_r1.g<-qgraph(data_sim.cor, graph="glasso",vsize=7,
                    cut=0, maximum=.45, sampleSize = nrow(Data),
                    negCol = "#fc1201", posCol = "#0095fd",
                    border.width=1.5, border.color="black", minimum=.03,
                    groups=gr, color=mycolor)
-dev.off()
+#dev.off()
 
 #library(qgraph)
 #library(bootnet)

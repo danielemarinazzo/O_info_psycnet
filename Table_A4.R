@@ -1,3 +1,4 @@
+# table A4
 library(lavaan)
 library(qgraph)
 #set factor loadings and covariance within triplet
@@ -78,7 +79,7 @@ R.z ~~ 0.15*S.z
 fit <- lavaan(pop.model)
 
 Data1 <- simulateData(pop.model, sample.nobs = 2000)
-pdf("app_A4_spring.pdf")
+#pdf("app_A4_spring.pdf")
 graph_r1.g<-qgraph(cor(Data1), layout="spring", graph="glasso", 
                    sampleSize=2000, cut=0, theme="colorblind")
-dev.off()
+#dev.off()

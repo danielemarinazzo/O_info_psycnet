@@ -11,7 +11,7 @@ set.seed(100)
 
 #parameters for simulation
 REP <- 10L #repetitions
-N <- 200L #sample size
+N <- 2000L #sample size
 
 #=-=-CASE SELECTION=-=-=-#
 #e.covs are now arranged in a vector of size 10
@@ -219,11 +219,12 @@ pop.model <- c("
     G.z ~~ 0.10*I.z
 ")
 
-fit <- lavaan(pop.model)
+Data <- simulateData(pop.model, sample.nobs = 2000L, empirical = TRUE)
+fit <- sem(pop.model, data = Data)
 Sigma <- lavInspect(fit, "Sigma")
 
 #visualize lavaan SEM
-#semPaths(fit)
+semPaths(fit)
 
 
 #=-=-BASELINE EDGELIST-=-=-=-=-=-=#
@@ -543,13 +544,14 @@ gr <- list(c(1:3),c(4:6),c(7:9),c(10:12),c(13:15),c(16:18),c(19:21),
 mycolor<-c('#a6cee3', '#1e78b4', '#b1df8a', '#32a02d','#fb9b98', 
            '#e3191c', '#fcbf70', '#ff8000', '#cab1d6')
 data_sim.cor<-cor_auto(Data)
-pdf("ex2_syn_200.pdf")
-graph_r1.g<-qgraph(data_sim.cor, graph="glasso", layout=L,vsize=7,
+#pdf("ex2_syn_200.pdf")
+# use layout=L if you have computed an average layout
+graph_r1.g<-qgraph(data_sim.cor, graph="glasso",vsize=7,
                    cut=0, maximum=.45, sampleSize = nrow(Data),
                    negCol = "#fc1201", posCol = "#0095fd",
                    border.width=1.5, border.color="black", minimum=.03,
                    groups=gr, color=mycolor)
-dev.off()
+#dev.off()
 
 #library(qgraph)
 #library(bootnet)

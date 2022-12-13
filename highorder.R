@@ -1,5 +1,5 @@
 
-# create triplet based on two-way interaction 
+# create triplet based on two-way interaction (Appendix C)
 
 # generate x1 and x2, with correlation of 0.2
 # set.seed(1234) # to re-create exactly the same numbers
