@@ -4,7 +4,7 @@ description of code and tools to compute higher order psychological networks
 How to:
 ---------------------------
 1. Input: 2D data (observations x variables). Real data ([here](https://eiko-fried.com/data/)) you find plenty, or simulations (see below)
-2. Clone [this repo](https://github.com/danielemarinazzo/HOI) and run [this function](https://github.com/danielemarinazzo/HOI/blob/main/hoi_exhaustive_loop_zerolag_fdr.m). , with the command
+2. Clone [this repo](https://github.com/danielemarinazzo/HOI) and run [this function](https://github.com/danielemarinazzo/HOI/blob/main/hoi_exhaustive_loop_zerolag_fdr.m), with the command
 
 `[Otot, O_val_size_tot] = hoi_exhaustive_loop_zerolag(data, max_size, n_highest, biascorrection);`, where
 
